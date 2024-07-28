@@ -1,0 +1,44 @@
+var analyze_sentence(sentence):
+    # Initialize counters
+    length = 0
+    word_count = 0
+    vowel_count = 0
+    
+    # Define a set of vowels for easy checking
+    vowels = set('aeiouAEIOU')
+    
+    # Flag to indicate if we are in a word
+    in_word = False
+    
+    # Loop through each character in the sentence
+    for char in sentence:
+        if char == '.':
+            # Stop processing when reaching the period
+            break
+        
+        # Update length
+        length += 1
+        
+        # Update word count
+        if char == ' ':
+            # If we encounter a space and were in a word, increment word_count
+            if in_word:
+                word_count += 1
+                in_word = False
+        else:
+            # Check for vowels
+            if char in vowels:
+                vowel_count += 1
+            
+            # If we are not in a word, now we are
+            if not in_word:
+                in_word = True
+    
+    # If the sentence is not empty and we were in a word at the end, count the last word
+    if in_word:
+        word_count += 1
+    
+    # Return or print results
+    return length, word_count, vowel_count
+
+
